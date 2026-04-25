@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Natural Language Image Editor Showcase">
+    <title>AI Image Editor with Natural Language</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <header>
+        <div class="logo">
+            <span class="logo-icon">✨</span>
+            <h1 style="font-size: 1.2rem;">AI Image Editor</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Editor</a></li>
+                <li><a href="#">Gallery</a></li>
+                <li><a href="#">Documentation</a></li>
+            </ul>
+        </nav>
+        <button class="btn-primary">Sign In</button>
+    </header>
+
+    <main class="container">
+        <section class="editor-panel">
+            <div class="panel-header">
+                <h2>Create Magic</h2>
+                <p>Upload an image and describe how you want to transform it using natural language.</p>
+            </div>
+
+            <div class="upload-area" id="uploadArea">
+                <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                <div class="upload-content" id="uploadContent">
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p>Drag & drop an image here or <span>browse</span></p>
+                </div>
+            </div>
+
+            <div class="prompt-area">
+                <label for="promptInput">Transformation Prompt</label>
+                <div class="input-wrapper">
+                    <textarea id="promptInput"
+                        placeholder="e.g. Transform this room into a futuristic cyberpunk style with neon lights..."
+                        rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label>Style Strength</label>
+                    <input type="range" min="1" max="100" value="75" class="slider" id="strengthSlider">
+                </div>
+            </div>
+
+            <button class="btn-generate" id="generateBtn">
+                <span>Generate Image</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </button>
+        </section>
+
+        <section class="preview-panel">
+            <div class="preview-container" id="previewContainer">
+                <div class="empty-state" id="emptyState">
+                    <div class="hologram-circle"></div>
+                    <p>Your creation will appear here</p>
+                </div>
+
+                <div class="result-view hidden" id="resultView">
+                    <div class="comparison-slider">
+                        <img src="assets/original.png" alt="Edited Image" class="after-image" id="afterImage">
+                        <div class="before-image-wrapper">
+                            <img src="assets/original.png" alt="Original Image" class="before-image" id="beforeImage">
+                        </div>
+                        <div class="slider-handle">
+                            <div class="slider-line"></div>
+                            <div class="slider-button">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="15 18 9 12 15 6"></polyline>
+                                </svg>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <polyline points="9 18 15 12 9 6"></polyline>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="result-actions">
+                        <button class="btn-secondary" id="downloadBtn">Download</button>
+                        <button class="btn-secondary" id="shareBtn">Share</button>
+                    </div>
+                </div>
+
+                <div class="loading-state hidden" id="loadingState">
+                    <div class="loader">
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                        <div class="circle"></div>
+                    </div>
+                    <p class="loading-text">Applying Neural Filters...</p>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
